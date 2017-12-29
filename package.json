@@ -1,0 +1,19 @@
+{
+  "name": "video-scheduler",
+  "version": "1.0.0",
+  "description": "Schedule videos to play in your browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyBarron/video-scheduler.git"
+  },
+  "author": "Andy Barron <AndrewLBarron@gmail.com>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/AndyBarron/video-scheduler/issues"
+  },
+  "homepage": "https://github.com/AndyBarron/video-scheduler#readme"
+}
