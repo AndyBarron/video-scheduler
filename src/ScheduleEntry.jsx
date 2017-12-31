@@ -97,9 +97,14 @@ export default class ScheduleEntry extends React.Component {
     if (this.state.editing) {
       return (
         <div className='btn-group' role='group'>
-          <button type='button' onClick={this.onUpdateClickBound} disabled={!this.state.timeTextValid} className='btn btn-primary'>Save</button>
-          <button type='button' onClick={this.props.onRemove} className='btn btn-danger'>Delete</button>
-          <button onClick={this.onEditStopBound} type='button' className='btn btn-light'>Cancel</button>
+          <button type='button' onClick={this.onUpdateClickBound}
+            disabled={!this.state.timeTextValid} className='btn btn-primary'>Save</button>
+          <button type='button' onClick={this.props.onRemove} className='btn btn-danger'>
+            Delete
+          </button>
+          <button onClick={this.onEditStopBound} type='button' className='btn btn-light'>
+            Cancel
+          </button>
         </div>
       );
     } else {

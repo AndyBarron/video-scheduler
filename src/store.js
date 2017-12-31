@@ -23,7 +23,6 @@ const reducer = (state = INITIAL_STATE, action) => {
     }
     case 'UPDATE_SCHEDULE_ENTRY': {
       const updated = action.payload.entry;
-      console.log(updated);
       const updatedEntries = state.scheduleEntries.map((entry) => {
         return entry.id === updated.id ? updated : entry;
       });
