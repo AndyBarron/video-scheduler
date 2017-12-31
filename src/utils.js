@@ -3,7 +3,7 @@ const REGEX_POSITIVE_INTEGER = /\d+/;
 
 const inRange = (n, min, max) => min <= n && n <= max;
 
-const timeFromTimeString = (s) => {
+export const timeFromTimeString = (s) => {
   let input = s.trim().replace(/\s+/g, '');
   const suffix = input.slice(-2);
   if (!(suffix === 'am' || suffix === 'pm')) {
@@ -26,7 +26,6 @@ const timeFromTimeString = (s) => {
 
 export const formatTime = (time) => {
   const seconds = time % 60;
-  console.log(seconds);
   const remainingMinutes = (time - seconds) / 60;
   const minutes = remainingMinutes % 60;
   const rawHours = (remainingMinutes - minutes) / 60;

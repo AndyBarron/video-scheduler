@@ -7,8 +7,8 @@ export default class Body extends React.Component {
     return (
       <div className='container'>
         <div className='row'>
-          <Video className='col-sm-8'/>
-          <Schedule className='col-sm-4'/>
+          <Video className='col-sm-6'/>
+          <Schedule className='col-sm-6'/>
         </div>
       </div>
     );
