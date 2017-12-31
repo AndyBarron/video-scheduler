@@ -3,6 +3,14 @@ const REGEX_POSITIVE_INTEGER = /\d+/;
 
 const inRange = (n, min, max) => min <= n && n <= max;
 
+export const getCurrentTime = () => {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+  return hours * 60 * 60 + minutes * 60 + seconds;
+};
+
 export const timeFromTimeString = (s) => {
   let input = s.trim().replace(/\s+/g, '');
   const suffix = input.slice(-2);
