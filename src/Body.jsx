@@ -1,6 +1,6 @@
 import React from 'react';
 import Schedule from './ScheduleConnected';
-import Video from './Video';
+import Video from './VideoConnected';
 
 export default class Body extends React.Component {
   render() {

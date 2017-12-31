@@ -20,13 +20,13 @@ export const timeFromTimeString = (s) => {
   }
   input = input.slice(0, -2);
   const parts = input.split(':');
-  if (!(2 <= parts.length && parts.length <= 3)) {
+  if (!(1 <= parts.length && parts.length <= 3)) {
     return null;
   }
   if (!parts.every((part) => REGEX_POSITIVE_INTEGER.test(part))) {
     return null;
   }
-  const [hours, minutes, seconds = 0] = parts.map((part) => Number(part));
+  const [hours, minutes = 0, seconds = 0] = parts.map((part) => Number(part));
   if (!(inRange(hours, 1, 12) && inRange(minutes, 0, 59) && inRange(seconds, 0, 59))) {
     return null;
   }
