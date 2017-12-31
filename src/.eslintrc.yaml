@@ -1,0 +1,9 @@
+extends: '@andybarron/eslint-config'
+env:
+  browser: true
+parserOptions:
+  ecmaVersion: 2017
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+    experimentalObjectRestSpread: true

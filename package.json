@@ -17,9 +17,15 @@
   "scripts": {
     "production": "npm-run-all build serve",
     "serve": "serve -s build",
+    "lint": "eslint src",
+    "format": "npm run lint -- --fix",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@andybarron/eslint-config": "1.0.3",
+    "eslint": "4.14.0"
   }
 }
