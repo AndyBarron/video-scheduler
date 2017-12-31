@@ -2,16 +2,19 @@ import { createStore } from 'redux';
 import { sortBy } from 'lodash';
 
 const INITIAL_STATE = {
-  playing: false,
   scheduleEntries: [],
-  videoData: null,
   videoUrl: '',
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'SET_VIDEO_URL':
+    case 'SET_VIDEO_URL': {
+      const url = action.payload.url;
+      if (url === state.videoUrl) {
+        return state;
+      }
       return { ...state, videoUrl: action.payload.url };
+    }
     case 'ADD_SCHEDULE_ENTRY': {
       const entries = [...state.scheduleEntries, action.payload.entry];
       const sorted = sortBy(entries, 'time');

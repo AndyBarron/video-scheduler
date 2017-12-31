@@ -43,8 +43,8 @@ export const formatTime = (time) => {
   const remainingMinutes = (time - seconds) / 60;
   const minutes = remainingMinutes % 60;
   const rawHours = (remainingMinutes - minutes) / 60;
-  const hours = rawHours || 12;
   const isPm = rawHours >= 12;
+  const hours = (isPm ? rawHours - 12 : rawHours) || 12;
   const suffix = isPm ? 'pm' : 'am';
   const secondsPart = seconds ? `:${twoDigits(seconds)}` : '';
   return `${twoDigits(hours)}:${twoDigits(minutes)}${secondsPart}${suffix}`;
