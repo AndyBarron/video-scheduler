@@ -22,13 +22,13 @@ export default class Video extends React.Component {
     clearInterval(this.updateInterval);
   }
   update() {
-    const playing = this.state.playing;
-    const shouldBePlaying = this.shouldBePlaying();
-    if (playing === shouldBePlaying) {
+    const startTime = this.findCurrentStartTime();
+    const shouldBePlaying = Boolean(startTime);
+    if (this.state.playing === shouldBePlaying) {
       return;
     }
-    if (shouldBePlaying) {
-      this.playerRef.seekTo(0);
+    if (shouldBePlaying && this.playerRef) {
+      this.playerRef.seekTo(getCurrentTime() - startTime);
     }
     this.setState({ playing: shouldBePlaying });
   }
@@ -44,13 +44,14 @@ export default class Video extends React.Component {
       }
     });
   }
-  shouldBePlaying() {
+  findCurrentStartTime() {
     const startTimes = this.computeStartTimes();
-    return startTimes.some((start) => {
+    const result = startTimes.find((start) => {
       const end = start + this.state.duration + 2; // Margin for error
       const now = getCurrentTime();
       return start <= now && now <= end;
     });
+    return result === undefined ? null : result;
   }
   onPlayerReady() {
     const duration = this.playerRef.getDuration();

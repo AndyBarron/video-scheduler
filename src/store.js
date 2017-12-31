@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'SET_VIDEO_URL': {
-      const url = action.payload.url;
+      const { url } = action.payload;
       if (url === state.videoUrl) {
         return state;
       }
@@ -36,8 +36,8 @@ const reducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export const create = () => {
-  const store = createStore(reducer);
+export const create = (state = INITIAL_STATE) => {
+  const store = createStore(reducer, state);
   window.store = store;
   return store;
 };

@@ -3,8 +3,8 @@ import Video from './Video';
 
 const mapStateToProps = (state) => {
   return {
-    url: state.videoUrl,
     scheduleEntries: state.scheduleEntries,
+    url: state.videoUrl,
   };
 };
 

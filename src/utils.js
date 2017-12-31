@@ -1,6 +1,7 @@
 /* eslint no-magic-numbers: 0, no-mixed-operators: 0 */
 
 const REGEX_POSITIVE_INTEGER = /\d+/;
+export const SAVE_KEY = 'SAVED_STATE_V_1';
 
 const inRange = (n, min, max) => min <= n && n <= max;
 
