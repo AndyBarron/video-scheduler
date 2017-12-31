@@ -5,6 +5,7 @@ import { getCurrentTime } from './utils';
 export default class Video extends React.Component {
   constructor(props) {
     super(props);
+    window.v = this;
     this.updateInterval = null;
     this.playerRef = null;
     this.state = {
@@ -27,8 +28,9 @@ export default class Video extends React.Component {
     if (this.state.playing === shouldBePlaying) {
       return;
     }
-    if (shouldBePlaying && this.playerRef) {
-      this.playerRef.seekTo(getCurrentTime() - startTime);
+    if (this.playerRef) {
+      const targetTime = shouldBePlaying ? getCurrentTime() - startTime : 0;
+      this.playerRef.seekTo(targetTime);
     }
     this.setState({ playing: shouldBePlaying });
   }
@@ -83,6 +85,7 @@ export default class Video extends React.Component {
                 ref={this.setPlayerRefBound}
                 url={this.props.url}
                 width='100%'
+                playsinline={true}
               /> :
               null
           }
