@@ -67,7 +67,7 @@ export default class Video extends React.Component {
   }
   render() {
     return (
-      <div className={`pt-2 ${this.props.className}`}>
+      <div className={`${this.props.className || ''}`}>
         <h2>Video</h2>
         <input
           className='form-control form-control-lg'

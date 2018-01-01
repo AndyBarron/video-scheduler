@@ -23,8 +23,8 @@ class App extends Component {
     return (
       <Provider store={this.store}>
         <div>
-          <Nav />
-          <Body />
+          <Nav className='navbar-dark bg-primary'/>
+          <Body className='mt-4' />
         </div>
       </Provider>
     );
