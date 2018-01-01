@@ -109,7 +109,7 @@ export default class ScheduleEntry extends React.Component {
       );
     } else {
       return (
-        <button onClick={this.onEditStartBound} type='button' className='btn btn-light'>Edit</button>
+        <button onClick={this.onEditStartBound} type='button' className='btn btn-primary'>Edit</button>
       );
     }
   }
