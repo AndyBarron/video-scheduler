@@ -14,7 +14,7 @@ export default class Video extends React.Component {
     };
     this.onUrlUpdateBound = this.onUrlUpdate.bind(this);
     this.setPlayerRefBound = this.setPlayerRef.bind(this);
-    this.onPlayerReadyBound = this.onPlayerReady.bind(this);
+    this.onPlayerDurationBound = this.onPlayerDuration.bind(this);
   }
   componentDidMount() {
     this.updateInterval = setInterval(this.update.bind(this), 1000);
@@ -55,8 +55,7 @@ export default class Video extends React.Component {
     });
     return result === undefined ? null : result;
   }
-  onPlayerReady() {
-    const duration = this.playerRef.getDuration();
+  onPlayerDuration(duration) {
     this.setState({ duration });
   }
   onUrlUpdate(e) {
@@ -80,7 +79,7 @@ export default class Video extends React.Component {
           {
             ReactPlayer.canPlay(this.props.url) ?
               <ReactPlayer
-                onReady={this.onPlayerReadyBound}
+                onDuration={this.onPlayerDurationBound}
                 playing={this.state.playing}
                 ref={this.setPlayerRefBound}
                 url={this.props.url}
