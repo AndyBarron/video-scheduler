@@ -3,11 +3,19 @@ import { sortBy } from 'lodash';
 
 const INITIAL_STATE = {
   scheduleEntries: [],
+  showVideo: true,
   videoUrl: '',
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case 'SET_SHOW_VIDEO': {
+      const { show } = action.payload;
+      if (show === state.showVideo) {
+        return state;
+      }
+      return { ...state, showVideo: show };
+    }
     case 'SET_VIDEO_URL': {
       const { url } = action.payload;
       if (url === state.videoUrl) {

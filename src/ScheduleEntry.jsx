@@ -78,9 +78,9 @@ export default class ScheduleEntry extends React.Component {
     if (this.state.editing) {
       return (
         <div className='form-inline'>
-          <select className='form-control mr-2' onChange={this.onTimingChangeBound}>
-            <option value='start' selected={this.state.timing === 'start'}>Start at</option>
-            <option value='end' selected={this.state.timing === 'end'}>End at</option>
+          <select className='form-control mr-2' defaultValue={this.state.timing} onChange={this.onTimingChangeBound}>
+            <option value='start'>Start at</option>
+            <option value='end'>End at</option>
           </select>
           <input
             type='text'
