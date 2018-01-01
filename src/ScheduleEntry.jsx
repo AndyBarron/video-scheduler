@@ -35,6 +35,7 @@ export default class ScheduleEntry extends React.Component {
     this.onUpdateClickBound = this.onUpdateClick.bind(this);
   }
   createEditState() {
+    console.log(this.props.timing);
     return {
       editing: true,
       timeText: formatTime(this.props.time),
@@ -59,11 +60,13 @@ export default class ScheduleEntry extends React.Component {
     });
   }
   onTimingChange(e) {
+    console.log(e.target.value);
     this.setState({
       timing: e.target.value,
     });
   }
   onUpdateClick(e) {
+    console.log(this.state.timing);
     this.props.onUpdate({
       id: this.props.id,
       time: timeFromTimeString(this.state.timeText),
@@ -76,8 +79,8 @@ export default class ScheduleEntry extends React.Component {
       return (
         <div className='form-inline'>
           <select className='form-control mr-2' onChange={this.onTimingChangeBound}>
-            <option value='start'>Start at</option>
-            <option value='end'>End at</option>
+            <option value='start' selected={this.state.timing === 'start'}>Start at</option>
+            <option value='end' selected={this.state.timing === 'end'}>End at</option>
           </select>
           <input
             type='text'
