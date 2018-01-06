@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "npm-run-all build serve",
-    "serve": "serve -s build",
+    "serve": "serve -s -p ${PORT:-8000} build",
     "lint": "eslint src",
     "format": "npm run lint -- --fix",
     "dev": "react-scripts start",
