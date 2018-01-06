@@ -1,0 +1,5 @@
+WAIT=15
+TIMEOUT=60
+ATTEMPTS=4
+
+/ <!DOCTYPE html>
