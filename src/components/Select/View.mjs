@@ -13,6 +13,10 @@ const StyledReactSelect = styled(ReactSelect)`
     border-radius: 0 !important;
     color: ${ props => props.theme.colorTextDefault } !important;
   }
+  &.is-focused:not(.is-open) * {
+    background: ${ props => offset(props.theme.colorBackgroundDefault) } !important;
+    color: ${ props => readableColor(offset(props.theme.colorBackgroundDefault)) } !important;
+  }
   &.is-focused:not(.is-open) .Select-control {
     border-color: ${ props => props.theme.colorActive } !important;
     box-shadow: 0 0 0 3px ${ props => withAlpha(0.1, props.theme.colorActive) } !important;
