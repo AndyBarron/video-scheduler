@@ -15,22 +15,19 @@ const createTheme = (config) => {
   return config;
 };
 
-export default Object.assign(
-  Object.create(null),
-  {
-    dark: createTheme({
-      colorActive: '#375a7f',
-      colorBackgroundDefault: '#222',
-      colorBackgroundNav: '#375a7f',
-      fontDefault: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-      name: 'Default',
-    }),
-    light: createTheme({
-      colorActive: '#004499',
-      colorBackgroundDefault: '#EEE',
-      colorBackgroundNav: '#6699AA',
-      fontDefault: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-      name: 'Light',
-    }),
-  },
-);
+export default {
+  dark: createTheme({
+    colorActive: '#375a7f',
+    colorBackgroundDefault: '#222',
+    colorBackgroundNav: '#375a7f',
+    fontDefault: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+    name: 'Dark',
+  }),
+  light: createTheme({
+    colorActive: '#004499',
+    colorBackgroundDefault: '#EEE',
+    colorBackgroundNav: '#6699AA',
+    fontDefault: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+    name: 'Light',
+  }),
+};

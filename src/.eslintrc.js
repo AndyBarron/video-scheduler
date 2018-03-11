@@ -13,7 +13,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.mjs'],
+        extensions: ['.mjs', '.js'], // .js for external deps only
       },
     },
   },

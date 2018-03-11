@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Nav } from '..';
-import { pageWidth } from '../../styles';
+import { Schedule, Nav, Video } from '..';
+import { mobile, pageWidth } from '../../styles';
 
 const AppContainer = styled.div`
   background-color: ${props => props.theme.colorBackgroundDefault};
@@ -19,14 +19,25 @@ const AppContainer = styled.div`
 `;
 
 const AppBody = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
   padding-top: 20px;
+  & > * {
+    flex-grow: 1;
+  }
   ${pageWidth()}
+  ${mobile(`
+    flex-flow: column nowrap;
+    & > *:not(:first-child) {
+      margin-top: 20px;
+    }
+  `)}
 `;
 
 export default class AppView extends React.Component {
   static propTypes = {
     theme: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  }
+  };
 
   render() {
     const { theme } = this.props;
@@ -34,7 +45,10 @@ export default class AppView extends React.Component {
       <ThemeProvider theme={theme}>
         <AppContainer>
           <Nav />
-          <AppBody>Hello World!</AppBody>
+          <AppBody>
+            <Video />
+            <Schedule />
+          </AppBody>
         </AppContainer>
       </ThemeProvider>
     );

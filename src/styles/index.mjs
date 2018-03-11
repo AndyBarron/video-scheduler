@@ -1,2 +1,5 @@
 export { default as themes } from './themes';
-export * from './mixins';
+export {
+  mobile,
+  pageWidth,
+} from './mixins';
