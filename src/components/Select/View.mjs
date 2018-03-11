@@ -48,6 +48,7 @@ export default class Select extends React.PureComponent {
         value: PropTypes.string.isRequired,
       }).isRequired,
     ).isRequired,
+    multi: PropTypes.bool,
     searchable: PropTypes.bool,
     value: PropTypes.string,
   };
@@ -55,6 +56,7 @@ export default class Select extends React.PureComponent {
   static defaultProps = {
     className: '',
     clearable: false,
+    multi: false,
     searchable: false,
     value: undefined,
   };
@@ -63,6 +65,7 @@ export default class Select extends React.PureComponent {
     const {
       className,
       clearable,
+      multi,
       onChange,
       options,
       searchable,
@@ -73,6 +76,7 @@ export default class Select extends React.PureComponent {
         arrowRenderer={renderArrow}
         className={className}
         clearable={clearable}
+        multi={multi}
         onChange={onChange}
         options={options}
         searchable={searchable}

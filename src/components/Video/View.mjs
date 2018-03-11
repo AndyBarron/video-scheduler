@@ -34,15 +34,28 @@ export default class VideoView extends React.Component {
     className: '',
   };
 
+  state = {
+    errorMessage: null,
+  };
+
   handleDurationUpdate = (seconds) => {
     this.props.onDurationUpdate(seconds * 1000);
   };
+  handleError = () => {
+    const { url } = this.props;
+    const errorMessage = ReactPlayer.canPlay(url) ?
+      'An error occurred.' :
+      "That video either doesn't exist or can't be played.";
+    this.setState({ errorMessage });
+  };
   handleUrlChange = (url) => {
     this.props.onUrlChange(url);
+    this.setState({ errorMessage: null });
   };
 
   render() {
     const { className, url, urlInput } = this.props;
+    const { errorMessage } = this.state;
     return (
       <VideoContainer className={className}>
         <div>
@@ -54,11 +67,17 @@ export default class VideoView extends React.Component {
         </div>
         {url && (
           <StyledPlayer
+            hidden={!ReactPlayer.canPlay(url)}
             onDuration={this.handleDurationUpdate}
+            onError={this.handleError}
             url={url}
           />
+        )}
+        {errorMessage && (
+          <div>{ errorMessage }</div>
         )}
       </VideoContainer>
     );
   }
 }
+window.ReactPlayer = ReactPlayer;
