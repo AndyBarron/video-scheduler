@@ -36,6 +36,7 @@
     "babel-loader": "8.0.0-beta.2",
     "babel-plugin-dev-expression": "0.2.1",
     "babel-plugin-transform-react-remove-prop-types": "0.4.13",
+    "clean-webpack-plugin": "0.1.19",
     "color": "3.0.0",
     "css-loader": "0.28.10",
     "extract-text-webpack-plugin": "4.0.0-beta.0",

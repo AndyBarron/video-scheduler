@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getScheduleEntries } from '../../services/schedule';
+import { getScheduleEntries } from '../../services';
 import View from './View';
 
 const mapStateToProps = state => ({

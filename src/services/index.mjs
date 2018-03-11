@@ -3,6 +3,18 @@ import { routerForBrowser } from 'redux-little-router';
 import { reducer as scheduleReducer } from './schedule';
 import { reducer as themeReducer } from './theme';
 
+export {
+  addScheduleEntry,
+  getScheduleEntries,
+  removeScheduleEntry,
+} from './schedule';
+export {
+  getCurrentThemeId,
+  getPresetConfigs,
+  getTheme,
+  selectTheme,
+} from './theme';
+
 const REDUX_DEVTOOLS_COMPOSE_KEY = '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__';
 
 export const createStore = () => {

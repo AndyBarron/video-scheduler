@@ -1,3 +1,4 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -27,7 +28,13 @@ module.exports = {
     strictExportPresence: true,
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      minify: PROD_MODE && {
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+      },
+    }),
     new ExtractTextPlugin({
       disable: DEV_MODE,
       filename: 'style.css',

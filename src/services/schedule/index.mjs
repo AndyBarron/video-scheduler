@@ -1,15 +1,14 @@
 
-const ADD_SCHEDULE_ENTRY_ACTION = 'schedule/ADD_SCHEDULE_ENTRY';
-const REMOVE_SCHEDULE_ENTRY_ACTION = 'schedule/REMOVE_SCHEDULE_ENTRY';
+import { ADD_SCHEDULE_ENTRY, REMOVE_SCHEDULE_ENTRY } from '../actionTypes';
 
 export const addScheduleEntry = entry => ({
   payload: entry,
-  type: ADD_SCHEDULE_ENTRY_ACTION,
+  type: ADD_SCHEDULE_ENTRY,
 });
 
 export const removeScheduleEntry = id => ({
   payload: id,
-  type: REMOVE_SCHEDULE_ENTRY_ACTION,
+  type: REMOVE_SCHEDULE_ENTRY,
 });
 
 const INITIAL_STATE = {
@@ -22,14 +21,14 @@ const compareEntriesByTime = ({ time: a }, { time: b }) => a.hour - b.hour || a.
 
 export const reducer = (state = INITIAL_STATE, { payload, type }) => {
   switch (type) {
-    case ADD_SCHEDULE_ENTRY_ACTION: {
+    case ADD_SCHEDULE_ENTRY: {
       const entry = payload;
       return {
         ...state,
         entries: [...state.entries, entry].sort(compareEntriesByTime),
       };
     }
-    case REMOVE_SCHEDULE_ENTRY_ACTION: {
+    case REMOVE_SCHEDULE_ENTRY: {
       const id = payload;
       return {
         ...state,

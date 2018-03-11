@@ -1,6 +1,6 @@
 import has from 'lodash/has';
 import { themes as themeMap } from '../../styles';
-import { SELECT_THEME_ACTION } from './actions';
+import { SELECT_THEME } from '../actionTypes';
 
 const DEFAULT_THEME = 'dark';
 
@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 
 const themeReducer = (state = INITIAL_STATE, { payload, type }) => {
   switch (type) {
-    case SELECT_THEME_ACTION: {
+    case SELECT_THEME: {
       const currentConfigId = payload;
       if (has(state.presetConfigs, currentConfigId)) {
         const currentConfig = state.presetConfigs[currentConfigId];

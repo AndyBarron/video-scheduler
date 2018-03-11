@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getCurrentThemeId, getPresetConfigs, selectTheme } from '../../services/theme';
+import { getCurrentThemeId, getPresetConfigs, selectTheme } from '../../services';
 import View from './View';
 
 const mapStateToProps = state => ({
