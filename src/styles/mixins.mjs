@@ -1,7 +1,15 @@
 import { css } from 'styled-components';
 
+const MOBILE_BREAKPOINT_PX = 800;
+
+export const desktop = rules => css`
+  @media (min-width: ${MOBILE_BREAKPOINT_PX + 1}px) {
+    ${rules}
+  }
+`;
+
 export const mobile = rules => css`
-  @media (max-width: 800px) {
+  @media (max-width: ${MOBILE_BREAKPOINT_PX}px) {
     ${rules}
   }
 `;

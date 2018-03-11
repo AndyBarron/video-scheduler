@@ -1,5 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'styled-components';
+
+const ScheduleContainer = styled.div`
+`;
 
 export default class VideoView extends React.Component {
   static propTypes = {

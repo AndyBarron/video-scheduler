@@ -8,6 +8,7 @@ export const getTheme = createSelector(
   [getThemeConfig],
   config => ({
     ...config,
+    colorTextActive: readableColor(config.colorActive),
     colorTextDefault: readableColor(config.colorBackgroundDefault),
     colorTextNav: readableColor(config.colorBackgroundNav),
   }),

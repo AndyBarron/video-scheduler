@@ -3,3 +3,6 @@ export {
   mobile,
   pageWidth,
 } from './mixins';
+export {
+  offset,
+} from './utils';
