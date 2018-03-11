@@ -8,6 +8,7 @@ const EXCLUDE = /node_modules/;
 const PROD_MODE = !DEV_MODE;
 
 module.exports = {
+  devtool: DEV_MODE ? 'cheap-module-source-map' : 'nosources-source-map',
   mode: DEV_MODE ? 'development' : 'production',
   module: {
     rules: [
@@ -26,6 +27,9 @@ module.exports = {
       },
     ],
     strictExportPresence: true,
+  },
+  output: {
+    crossOriginLoading: DEV_MODE ? 'anonymous' : false,
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),

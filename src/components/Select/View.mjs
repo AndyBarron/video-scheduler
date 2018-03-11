@@ -2,8 +2,9 @@ import 'react-select/dist/react-select.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactSelect from 'react-select';
+import { readableColor } from 'polished';
 import styled from 'styled-components';
-import { withAlpha } from '../../styles';
+import { offset, withAlpha } from '../../styles';
 
 const StyledReactSelect = styled(ReactSelect)`
   &, & * {
@@ -15,6 +16,18 @@ const StyledReactSelect = styled(ReactSelect)`
   &.is-focused:not(.is-open) .Select-control {
     border-color: ${ props => props.theme.colorActive } !important;
     box-shadow: 0 0 0 3px ${ props => withAlpha(0.1, props.theme.colorActive) } !important;
+  }
+  & .Select-option.is-focused {
+    background: ${ props => offset(props.theme.colorBackgroundDefault) } !important;
+    color: ${ props => readableColor(offset(props.theme.colorBackgroundDefault)) } !important;
+  }
+  & .Select-option.is-selected {
+    background: ${ props => props.theme.colorActive } !important;
+    color: ${ props => props.theme.colorTextActive } !important;
+  }
+  & .Select-option.is-selected.is-focused {
+    background: ${ props => offset(props.theme.colorActive) } !important;
+    color: ${ props => readableColor(offset(props.theme.colorActive)) } !important;
   }
 `;
 

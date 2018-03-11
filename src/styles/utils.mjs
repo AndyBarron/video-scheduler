@@ -7,7 +7,7 @@ const memoizeArgs = (...args) => args.join('__');
 const computeOffset = (color) => {
   const luminance = getLuminance(color);
   const dark = luminance <= 0.5;
-  return (dark ? lighten : darken)(0.2, color);
+  return (dark ? lighten : darken)(0.12, color);
 };
 
 export const offset = memoize(computeOffset, memoizeArgs);
