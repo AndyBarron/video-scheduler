@@ -7,7 +7,7 @@ import Select from '../Select';
 const NavContainer = styled.div`
   background: ${ props => props.theme.colorBackgroundNav };
   color: ${ props => props.theme.colorTextNav };
-  height: 40px;
+  height: 50px;
 `;
 
 const NavBody = styled.div`

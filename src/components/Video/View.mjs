@@ -13,6 +13,10 @@ const VideoContainer = styled.div`
   }
 `;
 
+const StyledInput = styled(TextInput)`
+  width: 100%;
+`;
+
 const StyledPlayer = styled(ReactPlayer)`
   max-width: 100%;
 `;
@@ -42,8 +46,9 @@ export default class VideoView extends React.Component {
     return (
       <VideoContainer className={className}>
         <div>
-          <TextInput
+          <StyledInput
             onChange={this.handleUrlChange}
+            placeholder="Paste video URL here"
             value={urlInput}
           />
         </div>
