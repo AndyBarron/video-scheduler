@@ -1,30 +1,69 @@
 {
   "name": "video-scheduler",
-  "version": "0.1.0",
-  "private": true,
+  "version": "2.0.0",
+  "description": "Schedule videos to play now or later",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "lint": "eslint .",
+    "serve": "serve -s",
+    "watch": "webpack-dev-server --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyBarron/video-scheduler.git"
+  },
+  "keywords": [
+    "video",
+    "playback",
+    "scheduler",
+    "schedule",
+    "app"
+  ],
+  "author": "Andy Barron <AndrewLBarron@gmail.com>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/AndyBarron/video-scheduler/issues"
+  },
+  "homepage": "https://github.com/AndyBarron/video-scheduler#readme",
   "dependencies": {
-    "bootswatch": "4.0.0-beta.3",
-    "lodash": "4.17.4",
-    "npm-run-all": "4.1.2",
+    "@babel/core": "7.0.0-beta.40",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.40",
+    "@babel/preset-env": "7.0.0-beta.40",
+    "@babel/preset-react": "7.0.0-beta.40",
+    "babel-loader": "8.0.0-beta.2",
+    "babel-plugin-dev-expression": "0.2.1",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.13",
+    "css-loader": "0.28.10",
+    "extract-text-webpack-plugin": "4.0.0-beta.0",
+    "html-webpack-plugin": "3.0.6",
+    "invariant": "2.2.3",
+    "normalize.css": "8.0.0",
+    "optimize-css-assets-webpack-plugin": "4.0.0",
+    "polished": "1.9.2",
+    "prop-types": "15.6.1",
     "react": "16.2.0",
     "react-dom": "16.2.0",
-    "react-player": "0.25.3",
-    "react-redux": "5.0.6",
-    "react-scripts": "1.0.17",
+    "react-hot-loader": "4.0.0",
+    "react-player": "1.2.1",
+    "react-redux": "5.0.7",
     "redux": "3.7.2",
-    "serve": "6.4.3"
-  },
-  "scripts": {
-    "start": "npm-run-all build serve",
-    "serve": "serve -s build",
-    "lint": "eslint src",
-    "format": "npm run lint -- --fix",
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "redux-little-router": "15.0.0",
+    "redux-saga": "0.16.0",
+    "reselect": "3.0.1",
+    "style-loader": "0.20.3",
+    "styled-components": "3.2.1",
+    "webpack": "4.1.1",
+    "webpack-cli": "2.0.11"
   },
   "devDependencies": {
-    "@andybarron/eslint-config": "1.1.0"
+    "babel-eslint": "8.2.2",
+    "eslint": "4.18.2",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.7.0",
+    "webpack-dev-server": "3.1.1"
   }
 }
