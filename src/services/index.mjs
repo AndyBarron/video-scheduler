@@ -1,4 +1,9 @@
-import { applyMiddleware, combineReducers, compose, createStore as createReduxStore } from 'redux';
+import {
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore as createReduxStore,
+} from 'redux';
 import { routerForBrowser } from 'redux-little-router';
 import { reducer as scheduleReducer } from './schedule';
 import { reducer as themeReducer } from './theme';
@@ -30,11 +35,12 @@ export const createStore = () => {
   const middleware = [
     router.middleware,
   ];
-  const composeEnhancers = window[REDUX_DEVTOOLS_COMPOSE_KEY] || compose;
-  const enhancer = composeEnhancers(
+  const enhancers = [
     router.enhancer,
     applyMiddleware(...middleware),
-  );
+  ];
+  const composeEnhancers = window[REDUX_DEVTOOLS_COMPOSE_KEY] || compose;
+  const enhancer = composeEnhancers(...enhancers);
 
   return createReduxStore(
     reducer,
