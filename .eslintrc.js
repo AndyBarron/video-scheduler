@@ -6,6 +6,7 @@ module.exports = {
   ],
   rules: {
     'babel/semi': ['error', 'always'],
+    'func-names': ['error', 'as-needed'],
     'function-paren-newline': ['error', 'consistent'],
     'import/default': 'error',
     'import/extensions': ['error', 'never'],

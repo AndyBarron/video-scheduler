@@ -24,13 +24,20 @@ const AppContainer = styled.div`
 const AppBody = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
   padding-top: 20px;
   & > * {
-    flex-grow: 1;
+    flex: 1;
+    width: 50%;
   }
   ${ pageWidth() }
   ${ mobile(`
     flex-flow: column nowrap;
+    & > * {
+      flex-grow: 1;
+      flex-shrink: 1;
+      width: 100%;
+    }
     & > *:not(:first-child) {
       margin-top: 20px;
     }

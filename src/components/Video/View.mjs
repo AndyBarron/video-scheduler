@@ -1,19 +1,59 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import ReactPlayer from 'react-player';
+import styled from 'styled-components';
+import { TextInput } from '..';
+
+const VideoContainer = styled.div`
+  align-items: stretch;
+  display: flex;
+  flex-flow: column nowrap;
+  & > *:not(:first-child) {
+    margin-top: 10px;
+  }
+`;
+
+const StyledPlayer = styled(ReactPlayer)`
+  max-width: 100%;
+`;
 
 export default class VideoView extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    onDurationUpdate: PropTypes.func.isRequired,
+    onUrlChange: PropTypes.func.isRequired,
+    url: PropTypes.string.isRequired,
+    urlInput: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     className: '',
   };
 
+  handleDurationUpdate = (seconds) => {
+    this.props.onDurationUpdate(seconds * 1000);
+  };
+  handleUrlChange = (url) => {
+    this.props.onUrlChange(url);
+  };
+
   render() {
-    const { className } = this.props;
+    const { className, url, urlInput } = this.props;
     return (
-      <div className={className}>Insert video here...</div>
+      <VideoContainer className={className}>
+        <div>
+          <TextInput
+            onChange={this.handleUrlChange}
+            value={urlInput}
+          />
+        </div>
+        {url && (
+          <StyledPlayer
+            onDuration={this.handleDurationUpdate}
+            url={url}
+          />
+        )}
+      </VideoContainer>
     );
   }
 }
