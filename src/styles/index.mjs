@@ -5,4 +5,5 @@ export {
 } from './mixins';
 export {
   offset,
+  withAlpha,
 } from './utils';

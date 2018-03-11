@@ -16,6 +16,8 @@ const INITIAL_STATE = {
   entries: [],
 };
 
+export const getScheduleEntries = state => state.schedule.entries;
+
 const compareEntriesByTime = ({ time: a }, { time: b }) => a.hour - b.hour || a.minute - b.minute;
 
 export const reducer = (state = INITIAL_STATE, { payload, type }) => {

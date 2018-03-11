@@ -8,14 +8,15 @@ const KIND_TO_COLORS = {
     color: inherit;
   `,
   primary: css`
-    background: ${ props => props.theme.colorActive },
-    color: ${ props => props.theme.colorTextActive },
+    background: ${ props => props.theme.colorActive };
+    color: ${ props => props.theme.colorTextActive };
   `,
 };
 
 const ButtonTag = styled.button`
   border: none;
   ${ ({ kind }) => KIND_TO_COLORS[kind] }
+  padding: 5px;
 `;
 
 export default class ButtonView extends React.Component {

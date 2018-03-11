@@ -3,15 +3,22 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactSelect from 'react-select';
 import styled from 'styled-components';
+import { withAlpha } from '../../styles';
 
 const StyledReactSelect = styled(ReactSelect)`
-  & > .Select-control {
-    border-radius: 0;
+  &, & * {
+    background: ${ props => props.theme.colorBackgroundDefault } !important;
+    border-color: ${ props => props.theme.colorTextDefault } !important;
+    border-radius: 0 !important;
+    color: ${ props => props.theme.colorTextDefault } !important;
   }
-  & > .Select-menu-outer {
-    border-radius: 0;
+  &.is-focused:not(.is-open) .Select-control {
+    border-color: ${ props => props.theme.colorActive } !important;
+    box-shadow: 0 0 0 3px ${ props => withAlpha(0.1, props.theme.colorActive) } !important;
   }
 `;
+
+const renderArrow = ({ isOpen }) => (isOpen ? '▲' : '▼');
 
 export default class Select extends React.PureComponent {
   static propTypes = {
@@ -46,6 +53,7 @@ export default class Select extends React.PureComponent {
     } = this.props;
     return (
       <StyledReactSelect
+        arrowRenderer={renderArrow}
         className={className}
         clearable={clearable}
         onChange={onChange}

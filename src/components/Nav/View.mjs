@@ -5,8 +5,8 @@ import { pageWidth } from '../../styles';
 import Select from '../Select';
 
 const NavContainer = styled.div`
-  background: ${props => props.theme.colorBackgroundNav};
-  color: ${props => props.theme.colorTextNav};
+  background: ${ props => props.theme.colorBackgroundNav };
+  color: ${ props => props.theme.colorTextNav };
   height: 40px;
 `;
 
@@ -15,7 +15,7 @@ const NavBody = styled.div`
   display: flex;
   flex-flow: row nowrap;
   height: 100%;
-  ${pageWidth()}
+  ${ pageWidth() }
 `;
 
 const Brand = styled.div`

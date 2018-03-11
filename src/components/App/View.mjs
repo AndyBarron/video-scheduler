@@ -2,20 +2,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Schedule, Nav, Video } from '..';
-import { mobile, pageWidth } from '../../styles';
+import { mobile, offset, pageWidth } from '../../styles';
 
 const AppContainer = styled.div`
-  background-color: ${props => props.theme.colorBackgroundDefault};
+  background-color: ${ props => props.theme.colorBackgroundDefault };
   bottom: 0;
-  color: ${props => props.theme.colorTextDefault};
+  color: ${ props => props.theme.colorTextDefault };
   display: flex;
   flex-flow: column nowrap;
-  font-family: ${props => props.theme.fontDefault};
+  font-family: ${ props => props.theme.fontDefault };
   font-size: 16px;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
+  & *:focus {
+    outline-color: ${ props => offset(props.theme.colorActive) };
+  }
 `;
 
 const AppBody = styled.div`
@@ -25,13 +28,13 @@ const AppBody = styled.div`
   & > * {
     flex-grow: 1;
   }
-  ${pageWidth()}
-  ${mobile(`
+  ${ pageWidth() }
+  ${ mobile(`
     flex-flow: column nowrap;
     & > *:not(:first-child) {
       margin-top: 20px;
     }
-  `)}
+  `) }
 `;
 
 export default class AppView extends React.Component {
