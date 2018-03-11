@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import '../css/global.css';
 import { App } from './components';
-import { create as createStore } from './redux-store';
+import { createStore } from './services';
 
 const tree = (
   <Provider store={createStore()}>

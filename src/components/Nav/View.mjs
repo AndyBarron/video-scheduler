@@ -4,13 +4,24 @@ import styled from 'styled-components';
 import { pageWidth } from '../../styles';
 
 const NavContainer = styled.div`
-  align-items: center;
   background: ${props => props.theme.colorBackgroundNav};
   color: ${props => props.theme.colorTextNav};
+  height: 40px;
+`;
+
+const NavBody = styled.div`
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
-  height: 40px;
+  height: 100%;
   ${pageWidth()}
+`;
+
+const Brand = styled.div`
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
 `;
 
 export default class NavView extends React.Component {
@@ -26,7 +37,9 @@ export default class NavView extends React.Component {
     const { className } = this.props;
     return (
       <NavContainer className={className}>
-        <span>Video Scheduler</span>
+        <NavBody>
+          <Brand>Video Scheduler</Brand>
+        </NavBody>
       </NavContainer>
     );
   }

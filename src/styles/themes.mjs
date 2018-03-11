@@ -19,9 +19,9 @@ export default Object.assign(
   Object.create(null),
   {
     dark: createTheme({
-      colorActive: '#0055BB',
+      colorActive: '#375a7f',
       colorBackgroundDefault: '#222',
-      colorBackgroundNav: '#004499',
+      colorBackgroundNav: '#375a7f',
       fontDefault: '"Helvetica Neue", Helvetica, Arial, sans-serif',
       name: 'Default',
     }),
