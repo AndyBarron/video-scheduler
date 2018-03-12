@@ -56,15 +56,14 @@ export default class ScheduleView extends React.Component {
     if (adding) {
       const { addingEntry: { days, time, timing } } = this.state;
       return (
-        <React.Fragment>
-          <ScheduleEntryEditor
-            days={days}
-            onUpdate={this.handledAddingEntryUpdate}
-            time={time}
-            timing={timing}
-          />
-          <Button kind="primary" onClick={this.handleCancelAddClick}>Cancel</Button>
-        </React.Fragment>
+        <ScheduleEntryEditor
+          adding
+          days={days}
+          onCancel={this.handleCancelAddClick}
+          onUpdate={this.handledAddingEntryUpdate}
+          time={time}
+          timing={timing}
+        />
       );
     }
     return (

@@ -1,32 +1,41 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { offset } from '../../styles';
 
 const KIND_TO_COLORS = {
+  danger: css`
+    background: ${ props => props.theme.colorDanger };
+    border-color: ${ props => offset(props.theme.colorDanger) };
+    color: ${ props => props.theme.colorTextDanger };
+  `,
   default: css`
-    background: none;
-    color: inherit;
+    background: ${ props => props.theme.colorBackgroundDefault };
+    border-color: ${ props => offset(props.theme.colorBackgroundDefault) };
+    color: ${ props => props.theme.colorTextDefault };
   `,
   primary: css`
     background: ${ props => props.theme.colorActive };
+    border-color: ${ props => offset(props.theme.colorActive) };
     color: ${ props => props.theme.colorTextActive };
   `,
 };
 
 const ButtonTag = styled.button`
-  border: none;
+  border: 1px solid;
   ${ ({ kind }) => KIND_TO_COLORS[kind] }
   padding: 5px;
+  &:focus {
+    box-shadow: 0px 0px 2px 0px ${ props => props.theme.colorTextDefault };
+    outline: none;
+  }
 `;
 
 export default class ButtonView extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-    kind: PropTypes.oneOf([
-      'default',
-      'primary',
-    ]),
+    kind: PropTypes.oneOf(Object.keys(KIND_TO_COLORS)),
     onClick: PropTypes.func.isRequired,
     type: PropTypes.string,
   };

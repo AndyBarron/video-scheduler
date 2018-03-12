@@ -62,14 +62,20 @@ const DayToggle = styled(Toggle)`
 
 export default class ScheduleEntryEditorView extends React.Component {
   static propTypes = {
+    adding: PropTypes.bool,
     days: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired, // TODO: Enforce length = 7
+    id: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+    onCancel: PropTypes.func.isRequired,
     onDelete: PropTypes.func,
+    onSave: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
     time: PropTypes.number.isRequired,
     timing: PropTypes.oneOf(['start', 'end']).isRequired,
   };
 
   static defaultProps = {
+    adding: false,
+    id: null,
     onDelete: null,
   };
 
@@ -102,10 +108,22 @@ export default class ScheduleEntryEditorView extends React.Component {
     onUpdate(entry);
   }
 
+  handleCancel = () => {
+    this.props.onCancel(this.props.id);
+  };
+
   handleDayChange = (index, checked) => {
     const days = this.props.days.slice();
     days[index] = checked;
     this.fireUpdate({ days });
+  };
+
+  handleDelete = () => {
+    this.props.onDelete(this.props.id);
+  };
+
+  handleSave = () => {
+    this.props.onSave(this.props.id);
   };
 
   handleTimeChange = (timeText) => {
@@ -113,7 +131,7 @@ export default class ScheduleEntryEditorView extends React.Component {
   };
 
   render() {
-    const { days, onDelete, timing } = this.props;
+    const { adding, days, onDelete, timing } = this.props;
     const { timeText, timeTextValid } = this.state;
     return (
       <Container>
@@ -140,9 +158,11 @@ export default class ScheduleEntryEditorView extends React.Component {
           ))}
         </Row>
         <Row justify="flex-end">
-          <Button kind="primary">Save</Button>
-          { !onDelete && (<Button kind="danger">Delete</Button>) }
-          <Button kind="default">Cancel</Button>
+          <Button kind="primary" onClick={this.handleSave}>
+            { adding ? 'Add' : 'Save' }
+          </Button>
+          { onDelete && (<Button kind="danger" onClick={this.handleDelete}>Delete</Button>) }
+          <Button kind="default" onClick={this.handleCancel}>Cancel</Button>
         </Row>
       </Container>
     );
