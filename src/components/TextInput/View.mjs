@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { offset } from '../../styles';
 
 const StyledInput = styled.input`
@@ -23,11 +23,13 @@ const StyledInput = styled.input`
   &:focus::placeholder {
     opacity: 0;
   }
+  ${ props => (!props.invalid ? '' : css`border-color: red !important;`) }
 `;
 
 export default class extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    invalid: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     type: PropTypes.string,
@@ -36,6 +38,7 @@ export default class extends React.Component {
 
   static defaultProps = {
     className: '',
+    invalid: false,
     placeholder: '',
     type: 'text',
   };
@@ -43,10 +46,11 @@ export default class extends React.Component {
   handleChange = event => this.props.onChange(event.target.value);
 
   render() {
-    const { className, placeholder, type, value } = this.props;
+    const { className, invalid, placeholder, type, value } = this.props;
     return (
       <StyledInput
         className={className}
+        invalid={invalid}
         onChange={this.handleChange}
         placeholder={placeholder}
         type={type}

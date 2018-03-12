@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { offset } from '../../styles';
+import Button from '../Button';
 import Select from '../Select';
 import TextInput from '../TextInput';
 import Toggle from '../Toggle';
@@ -37,7 +38,7 @@ const Row = styled.div`
   align-items: stretch;
   display: flex;
   flex-flow: row ${ props => (props.wrapItems ? 'wrap' : 'nowrap') };
-  justify-content: space-between;
+  justify-content: ${ props => props.justify || 'space-between' };
   margin: -5px;
   & > * {
     margin: 5px;
@@ -62,9 +63,19 @@ const DayToggle = styled(Toggle)`
 export default class ScheduleEntryEditorView extends React.Component {
   static propTypes = {
     days: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired, // TODO: Enforce length = 7
+    onDelete: PropTypes.func,
     onUpdate: PropTypes.func.isRequired,
     time: PropTypes.number.isRequired,
     timing: PropTypes.oneOf(['start', 'end']).isRequired,
+  };
+
+  static defaultProps = {
+    onDelete: null,
+  };
+
+  state = {
+    timeText: '12:45pm',
+    timeTextValid: true,
   };
 
   getDaySelectValue() {
@@ -78,6 +89,9 @@ export default class ScheduleEntryEditorView extends React.Component {
   }
 
   fireUpdate(changes) {
+    if (!this.state.timeTextValid) {
+      return;
+    }
     const { days, onUpdate, time, timing } = this.props;
     const entry = {
       days,
@@ -94,12 +108,13 @@ export default class ScheduleEntryEditorView extends React.Component {
     this.fireUpdate({ days });
   };
 
-  handleTimeChange = (time) => {
-    this.fireUpdate({ time });
+  handleTimeChange = (timeText) => {
+    this.setState({ timeText });
   };
 
   render() {
-    const { days, timing } = this.props;
+    const { days, onDelete, timing } = this.props;
+    const { timeText, timeTextValid } = this.state;
     return (
       <Container>
         <Row>
@@ -109,8 +124,9 @@ export default class ScheduleEntryEditorView extends React.Component {
             value={timing}
           />
           <TimeInput
+            invalid={!timeTextValid}
             onChange={this.handleTimeChange}
-            value="12:45pm"
+            value={timeText}
           />
         </Row>
         <Row wrapItems>
@@ -122,6 +138,11 @@ export default class ScheduleEntryEditorView extends React.Component {
               onChange={checked => this.handleDayChange(index, checked)}
             />
           ))}
+        </Row>
+        <Row justify="flex-end">
+          <Button kind="primary">Save</Button>
+          { !onDelete && (<Button kind="danger">Delete</Button>) }
+          <Button kind="default">Cancel</Button>
         </Row>
       </Container>
     );
