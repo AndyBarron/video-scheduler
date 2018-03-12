@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '..';
+import { Button, ScheduleEntryEditor } from '..';
 
 const ScheduleFooter = styled.div`
   text-align: right;
@@ -18,14 +18,59 @@ export default class ScheduleView extends React.Component {
         }).isRequired,
       }).isRequired,
     ).isRequired,
-    onAddClick: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     className: '',
   };
 
-  handleAddClick = () => this.props.onAddClick();
+  state = {
+    adding: false,
+    addingEntry: null,
+  };
+
+  handleAddClick = () => {
+    this.setState({
+      adding: true,
+      addingEntry: {
+        days: Array(7).fill(false),
+        time: 0,
+        timing: 'end',
+      },
+    });
+  };
+
+  handleCancelAddClick = () => {
+    this.setState({
+      adding: false,
+      addingEntry: null,
+    });
+  };
+
+  handledAddingEntryUpdate = (addingEntry) => {
+    this.setState({ addingEntry });
+  };
+
+  renderFooterContents() {
+    const { adding } = this.state;
+    if (adding) {
+      const { addingEntry: { days, time, timing } } = this.state;
+      return (
+        <React.Fragment>
+          <ScheduleEntryEditor
+            days={days}
+            onUpdate={this.handledAddingEntryUpdate}
+            time={time}
+            timing={timing}
+          />
+          <Button kind="primary" onClick={this.handleCancelAddClick}>Cancel</Button>
+        </React.Fragment>
+      );
+    }
+    return (
+      <Button kind="primary" onClick={this.handleAddClick}>Add to schedule</Button>
+    );
+  }
 
   render() {
     const { className, entries } = this.props;
@@ -37,7 +82,7 @@ export default class ScheduleView extends React.Component {
           ))
         }
         <ScheduleFooter>
-          <Button kind="primary" onClick={this.handleAddClick}>Add to schedule</Button>
+          { this.renderFooterContents() }
         </ScheduleFooter>
       </div>
     );

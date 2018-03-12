@@ -3,9 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { offset } from '../../styles';
 
-const StyledInput = styled.input.attrs({
-  type: 'text',
-})`
+const StyledInput = styled.input`
   background: ${ props => props.theme.colorBackgroundDefault };
   border: 1px solid ${ props => props.theme.colorTextDefault };
   border-radius: 0;
@@ -32,23 +30,26 @@ export default class extends React.Component {
     className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
+    type: PropTypes.string,
     value: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     className: '',
     placeholder: '',
+    type: 'text',
   };
 
   handleChange = event => this.props.onChange(event.target.value);
 
   render() {
-    const { className, placeholder, value } = this.props;
+    const { className, placeholder, type, value } = this.props;
     return (
       <StyledInput
         className={className}
         onChange={this.handleChange}
         placeholder={placeholder}
+        type={type}
         value={value}
       />
     );

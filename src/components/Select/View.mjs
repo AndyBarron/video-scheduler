@@ -41,16 +41,22 @@ export default class Select extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string,
     clearable: PropTypes.bool,
+    multi: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
+        value: PropTypes.oneOfType([
+          PropTypes.number.isRequired,
+          PropTypes.string.isRequired,
+        ]).isRequired,
       }).isRequired,
     ).isRequired,
-    multi: PropTypes.bool,
     searchable: PropTypes.bool,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.number.isRequired,
+      PropTypes.string.isRequired,
+    ]).isRequired,
   };
 
   static defaultProps = {
@@ -58,7 +64,6 @@ export default class Select extends React.PureComponent {
     clearable: false,
     multi: false,
     searchable: false,
-    value: undefined,
   };
 
   render() {

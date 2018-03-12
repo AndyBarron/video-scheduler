@@ -29,6 +29,9 @@ const AppBody = styled.div`
   & > * {
     flex: 1;
     width: 50%;
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
   }
   ${ pageWidth() }
   ${ mobile(`
