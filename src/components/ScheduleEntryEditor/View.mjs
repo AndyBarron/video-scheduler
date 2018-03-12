@@ -130,6 +130,10 @@ export default class ScheduleEntryEditorView extends React.Component {
     this.setState({ timeText });
   };
 
+  handleTimingChange = (timing) => {
+    this.fireUpdate({ timing });
+  };
+
   render() {
     const { adding, days, onDelete, timing } = this.props;
     const { timeText, timeTextValid } = this.state;
@@ -137,7 +141,7 @@ export default class ScheduleEntryEditorView extends React.Component {
       <Container>
         <Row>
           <TimingSelect
-            onChange={console.log}
+            onChange={this.handleTimingChange}
             options={TIMING_OPTIONS}
             value={timing}
           />
@@ -158,11 +162,11 @@ export default class ScheduleEntryEditorView extends React.Component {
           ))}
         </Row>
         <Row justify="flex-end">
+          <Button kind="default" onClick={this.handleCancel}>Cancel</Button>
+          { onDelete && (<Button kind="danger" onClick={this.handleDelete}>Delete</Button>) }
           <Button kind="primary" onClick={this.handleSave}>
             { adding ? 'Add' : 'Save' }
           </Button>
-          { onDelete && (<Button kind="danger" onClick={this.handleDelete}>Delete</Button>) }
-          <Button kind="default" onClick={this.handleCancel}>Cancel</Button>
         </Row>
       </Container>
     );
