@@ -41,7 +41,6 @@ export default class Select extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string,
     clearable: PropTypes.bool,
-    multi: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.arrayOf(
       PropTypes.shape({
@@ -62,16 +61,15 @@ export default class Select extends React.PureComponent {
   static defaultProps = {
     className: '',
     clearable: false,
-    multi: false,
     searchable: false,
   };
+
+  handleChange = ({ value }) => this.props.onChange(value);
 
   render() {
     const {
       className,
       clearable,
-      multi,
-      onChange,
       options,
       searchable,
       value,
@@ -81,8 +79,7 @@ export default class Select extends React.PureComponent {
         arrowRenderer={renderArrow}
         className={className}
         clearable={clearable}
-        multi={multi}
-        onChange={onChange}
+        onChange={this.handleChange}
         options={options}
         searchable={searchable}
         value={value}

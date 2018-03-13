@@ -61,6 +61,7 @@
     "shortid": "2.2.8",
     "style-loader": "0.20.3",
     "styled-components": "3.2.1",
+    "warning": "3.0.0",
     "webpack": "4.1.1",
     "webpack-cli": "2.0.11"
   },

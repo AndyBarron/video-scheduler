@@ -1,8 +1,23 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import { getCurrentTime } from '../../utils';
 import Button from '../Button';
 import ScheduleEntryEditor from '../ScheduleEntryEditor';
+
+const createEntry = () => ({
+  days: [
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+  ],
+  time: getCurrentTime(),
+  timing: 'end',
+});
 
 const ScheduleFooter = styled.div`
   text-align: right;
@@ -34,11 +49,7 @@ export default class ScheduleView extends React.Component {
   handleAddClick = () => {
     this.setState({
       adding: true,
-      addingEntry: {
-        days: Array(7).fill(false),
-        time: 0,
-        timing: 'end',
-      },
+      addingEntry: createEntry(),
     });
   };
 

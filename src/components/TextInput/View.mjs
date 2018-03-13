@@ -3,6 +3,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { offset } from '../../styles';
 
+const INVALID_MIXIN = css`
+  border-color: ${ innerProps => innerProps.theme.colorDanger } !important;
+`;
+
 const StyledInput = styled.input`
   background: ${ props => props.theme.colorBackgroundDefault };
   border: 1px solid ${ props => props.theme.colorTextDefault };
@@ -17,13 +21,16 @@ const StyledInput = styled.input`
   }
   &:focus {
     background: ${ props => offset(props.theme.colorBackgroundDefault) };
-    border-color: ${ props => offset(props.theme.colorActive) };
     outline: none;
   }
   &:focus::placeholder {
     opacity: 0;
   }
-  ${ props => (!props.invalid ? '' : css`border-color: red !important;`) }
+  ${ props => (
+    !props.invalid ?
+      '' :
+      INVALID_MIXIN
+  ) }
 `;
 
 export default class extends React.Component {

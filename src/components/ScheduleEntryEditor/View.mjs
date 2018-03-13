@@ -2,6 +2,7 @@ import invariant from 'invariant';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import warning from 'warning';
 import { offset } from '../../styles';
 import { formatTime, parseTimeString } from '../../utils';
 import Button from '../Button';
@@ -86,6 +87,14 @@ export default class ScheduleEntryEditorView extends React.Component {
     timeTextValid: true,
   };
 
+  get hasValidDays() {
+    return this.props.days.some(on => on);
+  }
+
+  get isValid() {
+    return this.state.timeTextValid && this.hasValidDays;
+  }
+
   getDaySelectValue() {
     const list = [];
     this.props.days.forEach((selected, index) => {
@@ -97,9 +106,6 @@ export default class ScheduleEntryEditorView extends React.Component {
   }
 
   fireUpdate(changes) {
-    if (!this.state.timeTextValid) {
-      return;
-    }
     const { days, onUpdate, time, timing } = this.props;
     const entry = {
       days,
@@ -126,8 +132,8 @@ export default class ScheduleEntryEditorView extends React.Component {
 
   handleSave = () => {
     invariant(
-      this.state.timeTextValid,
-      'ScheduleEntryEditor: Cannot save when time text is invalid',
+      this.isValid,
+      'ScheduleEntryEditor: Cannot save when input is invalid',
     );
     this.props.onSave(this.props.id);
   };
@@ -150,6 +156,10 @@ export default class ScheduleEntryEditorView extends React.Component {
   render() {
     const { adding, days, onDelete, timing } = this.props;
     const { timeText, timeTextValid } = this.state;
+    warning(
+      Boolean(adding) !== Boolean(onDelete),
+      'ScheduleEntryEditor: Must specify either `adding` or `onDelete`, but not both',
+    );
     return (
       <Container>
         <Row>
@@ -169,6 +179,7 @@ export default class ScheduleEntryEditorView extends React.Component {
             <DayToggle
               key={label}
               checked={days[index]}
+              invalid={!this.hasValidDays}
               label={label}
               onChange={checked => this.handleDayChange(index, checked)}
             />
@@ -177,7 +188,7 @@ export default class ScheduleEntryEditorView extends React.Component {
         <Row justify="flex-end">
           <Button kind="default" onClick={this.handleCancel}>Cancel</Button>
           { onDelete && (<Button kind="danger" onClick={this.handleDelete}>Delete</Button>) }
-          <Button disabled={!timeTextValid} kind="primary" onClick={this.handleSave}>
+          <Button disabled={!this.isValid} kind="primary" onClick={this.handleSave}>
             { adding ? 'Add' : 'Save' }
           </Button>
         </Row>
