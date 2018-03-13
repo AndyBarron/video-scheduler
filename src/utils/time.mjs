@@ -8,6 +8,11 @@ const twoDigits = (number) => {
   return rounded < 10 ? `0${ rounded }` : `${ rounded }`;
 };
 
+export const getCurrentTime = () => {
+  const now = new Date();
+  return (now.getHours() * 60 * 60 * 1000) + (now.getMinutes() * 60 * 1000);
+};
+
 export const formatTime = (ms) => {
   const time = Math.round(ms / 1000);
   const seconds = time % 60;

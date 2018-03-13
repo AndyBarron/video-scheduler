@@ -1,3 +1,4 @@
+import invariant from 'invariant';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -124,6 +125,10 @@ export default class ScheduleEntryEditorView extends React.Component {
   };
 
   handleSave = () => {
+    invariant(
+      this.state.timeTextValid,
+      'ScheduleEntryEditor: Cannot save when time text is invalid',
+    );
     this.props.onSave(this.props.id);
   };
 

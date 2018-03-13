@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import '../css/global.css';
-import { App } from './components';
+import App from './components/App';
 import { createStore } from './services';
 
 const tree = (

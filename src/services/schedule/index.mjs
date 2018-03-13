@@ -1,4 +1,4 @@
-
+import shortid from 'shortid';
 import { ADD_SCHEDULE_ENTRY, REMOVE_SCHEDULE_ENTRY } from '../actionTypes';
 
 export const addScheduleEntry = entry => ({
@@ -22,7 +22,10 @@ const compareEntriesByTime = ({ time: a }, { time: b }) => a.hour - b.hour || a.
 export const reducer = (state = INITIAL_STATE, { payload, type }) => {
   switch (type) {
     case ADD_SCHEDULE_ENTRY: {
-      const entry = payload;
+      const entry = {
+        ...payload,
+        id: shortid.generate(),
+      };
       return {
         ...state,
         entries: [...state.entries, entry].sort(compareEntriesByTime),

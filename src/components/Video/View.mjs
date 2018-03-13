@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactPlayer from 'react-player';
 import styled from 'styled-components';
-import { TextInput } from '..';
+import TextInput from '../TextInput';
 
 const VideoContainer = styled.div`
   align-items: stretch;

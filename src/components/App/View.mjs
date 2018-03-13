@@ -1,18 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Schedule, Nav, Video } from '..';
+import Schedule from '../Schedule';
+import Nav from '../Nav';
+import Video from '../Video';
 import { mobile, offset, pageWidth } from '../../styles';
 
 const AppContainer = styled.div`
   background-color: ${ props => props.theme.colorBackgroundDefault };
-  bottom: 0;
   color: ${ props => props.theme.colorTextDefault };
   display: flex;
   flex-flow: column nowrap;
   font-family: ${ props => props.theme.fontDefault };
   font-size: 16px;
   left: 0;
+  min-height: 100%;
+  padding-bottom: 20px;
   position: absolute;
   right: 0;
   top: 0;

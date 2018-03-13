@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { Button, ScheduleEntryEditor } from '..';
+import Button from '../Button';
+import ScheduleEntryEditor from '../ScheduleEntryEditor';
 
 const ScheduleFooter = styled.div`
   text-align: right;
@@ -12,12 +13,13 @@ export default class ScheduleView extends React.Component {
     className: PropTypes.string,
     entries: PropTypes.arrayOf(
       PropTypes.shape({
-        time: PropTypes.shape({
-          hour: PropTypes.number.isRequired,
-          minute: PropTypes.number.isRequired,
-        }).isRequired,
+        days: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired,
+        id: PropTypes.string.isRequired,
+        time: PropTypes.number.isRequired,
+        timing: PropTypes.oneOf(['start', 'end']).isRequired,
       }).isRequired,
     ).isRequired,
+    onEntryAdd: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -51,6 +53,11 @@ export default class ScheduleView extends React.Component {
     this.setState({ addingEntry });
   };
 
+  handleEntryAdd = () => {
+    this.props.onEntryAdd(this.state.addingEntry);
+    this.handleCancelAddClick();
+  };
+
   renderFooterContents() {
     const { adding } = this.state;
     if (adding) {
@@ -60,6 +67,7 @@ export default class ScheduleView extends React.Component {
           adding
           days={days}
           onCancel={this.handleCancelAddClick}
+          onSave={this.handleEntryAdd}
           onUpdate={this.handledAddingEntryUpdate}
           time={time}
           timing={timing}
@@ -76,8 +84,8 @@ export default class ScheduleView extends React.Component {
     return (
       <div className={className}>
         {
-          entries.map(() => (
-            <div>Entry!</div>
+          entries.map(entry => (
+            <pre key={entry.id}>{ JSON.stringify(entry, null, 2) }</pre>
           ))
         }
         <ScheduleFooter>

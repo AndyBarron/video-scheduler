@@ -1,9 +1,13 @@
 import { connect } from 'react-redux';
-import { getScheduleEntries } from '../../services';
+import { addScheduleEntry, getScheduleEntries } from '../../services';
 import View from './View';
 
 const mapStateToProps = state => ({
   entries: getScheduleEntries(state),
 });
 
-export default connect(mapStateToProps)(View);
+const mapDispatchToProps = dispatch => ({
+  onEntryAdd: entry => dispatch(addScheduleEntry(entry)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(View);
