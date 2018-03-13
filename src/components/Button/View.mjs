@@ -24,6 +24,7 @@ const KIND_TO_COLORS = {
 const ButtonTag = styled.button`
   border: 1px solid;
   ${ ({ kind }) => KIND_TO_COLORS[kind] }
+  opacity: ${ ({ disabled }) => (disabled ? 0.5 : 1) }
   padding: 5px;
   &:focus {
     box-shadow: 0px 0px 2px 0px ${ props => props.theme.colorTextDefault };
@@ -35,6 +36,7 @@ export default class ButtonView extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
+    disabled: PropTypes.bool,
     kind: PropTypes.oneOf(Object.keys(KIND_TO_COLORS)),
     onClick: PropTypes.func.isRequired,
     type: PropTypes.string,
@@ -42,6 +44,7 @@ export default class ButtonView extends React.Component {
 
   static defaultProps = {
     className: '',
+    disabled: false,
     kind: 'default',
     type: 'button',
   };
@@ -50,12 +53,19 @@ export default class ButtonView extends React.Component {
     const {
       children,
       className,
+      disabled,
       kind,
       onClick,
       type,
     } = this.props;
     return (
-      <ButtonTag className={className} kind={kind} onClick={onClick} type={type}>
+      <ButtonTag
+        className={className}
+        disabled={disabled}
+        kind={kind}
+        onClick={onClick}
+        type={type}
+      >
         { children }
       </ButtonTag>
     );

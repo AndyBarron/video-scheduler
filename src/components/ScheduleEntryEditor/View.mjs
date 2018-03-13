@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { offset } from '../../styles';
+import { formatTime, parseTimeString } from '../../utils';
 import Button from '../Button';
 import Select from '../Select';
 import TextInput from '../TextInput';
@@ -80,7 +81,7 @@ export default class ScheduleEntryEditorView extends React.Component {
   };
 
   state = {
-    timeText: '12:45pm',
+    timeText: formatTime(this.props.time),
     timeTextValid: true,
   };
 
@@ -128,6 +129,13 @@ export default class ScheduleEntryEditorView extends React.Component {
 
   handleTimeChange = (timeText) => {
     this.setState({ timeText });
+    try {
+      const time = parseTimeString(timeText);
+      this.setState({ timeTextValid: true });
+      this.fireUpdate({ time });
+    } catch (error) {
+      this.setState({ timeTextValid: false });
+    }
   };
 
   handleTimingChange = (timing) => {
@@ -164,7 +172,7 @@ export default class ScheduleEntryEditorView extends React.Component {
         <Row justify="flex-end">
           <Button kind="default" onClick={this.handleCancel}>Cancel</Button>
           { onDelete && (<Button kind="danger" onClick={this.handleDelete}>Delete</Button>) }
-          <Button kind="primary" onClick={this.handleSave}>
+          <Button disabled={!timeTextValid} kind="primary" onClick={this.handleSave}>
             { adding ? 'Add' : 'Save' }
           </Button>
         </Row>
