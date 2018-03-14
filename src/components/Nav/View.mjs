@@ -57,7 +57,7 @@ export default class NavView extends React.Component {
     className: '',
   };
 
-  handleThemeSelect = ({ value }) => this.props.onThemeSelect(value);
+  handleThemeSelect = id => this.props.onThemeSelect(id);
 
   render() {
     const { className, currentThemeId, themePresets } = this.props;

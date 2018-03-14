@@ -13,6 +13,5 @@ const tree = (
 );
 
 const container = document.createElement('div');
-container.id = 'app';
 document.body.appendChild(container);
 ReactDOM.render(tree, container);

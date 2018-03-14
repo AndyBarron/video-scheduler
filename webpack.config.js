@@ -38,6 +38,7 @@ module.exports = {
         collapseWhitespace: true,
         conservativeCollapse: true,
       },
+      template: './html/index.html',
     }),
     new ExtractTextPlugin({
       disable: DEV_MODE,
