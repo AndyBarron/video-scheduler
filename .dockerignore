@@ -1,7 +1,9 @@
 /*
 
-!/public/
+!/css/
 !/src/
+!/.babelrc.js
 !/CHECKS
 !/package-lock.json
 !/package.json
+!/webpack.config.js
